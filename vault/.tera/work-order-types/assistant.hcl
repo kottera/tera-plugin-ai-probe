@@ -30,14 +30,6 @@ EOT
     }
   }
 
-  volumes {
-    binding "workspace" {
-      type         = "empty"
-      lifecycle    = "work_order"
-      no_retention = "The conversation's own scratch: it holds nothing the probe needs once the conversation is over."
-    }
-  }
-
   in_dispatch {
     verbs = []
     tool "plugin.ai-probe/served-tools/check_caller" {}

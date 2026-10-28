@@ -35,7 +35,7 @@ func main() {
 	)
 	calls := &callLog{path: c.Data + "/calls.jsonl"}
 	probeRoutes(kit, c, calls)
-	p, err := pluginsdk.New(c, pluginsdk.Options{Name: pluginName, Version: "0.1.0", UI: kit})
+	p, err := pluginsdk.New(c, pluginsdk.Options{Name: pluginName, Version: "0.1.1", UI: kit})
 	if err != nil {
 		fail(err)
 	}
