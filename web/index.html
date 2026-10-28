@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ai probe</title>
+    <!-- tera's UI kit: the deployment serves it under this app's base, so the
+         links are relative and work on a subdomain installation and a
+         path-based one alike. The script loads here without defer, so the
+         person's style and scheme are on the page before it is first drawn.
+         Every part: <base>_tera/ui/v1/specimen.html -->
+    <link rel="stylesheet" href="_tera/ui/v1/tera-ui.css" vite-ignore />
+    <script src="_tera/ui/v1/tera-ui.js" vite-ignore></script>
+  </head>
+  <body>
+    <tera-shell>
+      <a slot="nav" href="./" aria-current="page">Work Orders</a>
+      <button slot="actions" type="button" id="refresh">Refresh</button>
+    </tera-shell>
+    <!-- One page, drawn with the UI kit's patterns and no CSS of the app's
+         own: the page header, cards, rows (.tera-items) and empty states. A row
+         opens the Work Order in a <tera-side-panel>, which src/main.ts adds
+         beside the main column (data-with-panel) and removes on tera-close. -->
+    <div class="tera-page" id="page">
+      <main class="tera-page-main">
+        <header class="tera-page-header">
+          <div class="tera-page-title">
+            <h1>Work Orders</h1>
+            <p class="tera-meta"><span id="work-count">Loading…</span></p>
+          </div>
+        </header>
+        <section class="tera-card">
+          <div class="tera-card-head"><h2>Work Orders you can read</h2></div>
+          <div class="tera-card-body">
+            <p class="tera-muted" id="work-status">Asking tera…</p>
+            <ul class="tera-items" id="work" aria-label="Work Orders you can read"></ul>
+            <div class="tera-empty-state" id="work-empty" hidden>
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>
+              <h3>No Work Orders to read</h3>
+              <p>This lists every Work Order your grants let you read. File one with tera workorder create, or ask an agent to, and it appears here.</p>
+            </div>
+          </div>
+        </section>
+        <section class="tera-card">
+          <div class="tera-card-head"><h2>Watched events</h2><span class="tera-aside" id="events-aside"></span></div>
+          <div class="tera-card-body">
+            <ul class="tera-items" id="events" aria-label="Watched events"></ul>
+            <div class="tera-empty-state" id="events-empty" hidden>
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <h3>No events watched</h3>
+              <p>The plugin watches its own Work Order types once its configuration names a feed and the types. tera plugin dev passes no configuration.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
