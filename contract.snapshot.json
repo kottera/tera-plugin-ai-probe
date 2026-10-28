@@ -1,10 +1,10 @@
 {
   "note": "Written by tera plugin pack; commit it beside manifest.hcl. The next pack compares the release it builds with this contract, and refuses an edit outside ADR-157 D6's allow-list unless the major version of version has risen, and a version that does not rise unless the release's bytes are this one's.",
   "format": 1,
-  "version": "0.1.1",
-  "major_version": "v0.1",
-  "release_digest": "sha256:77872f231944201e488915f18a9f9c4b949c6f0df7c22404f4f250fa90b35c5f",
-  "previous_digest": "sha256:5388f9aee3767d8abef30fc5df3f1303c217d906f01af6e00f977402e66891f7",
+  "version": "0.2.0",
+  "major_version": "v0.2",
+  "release_digest": "sha256:321af4acf03befc1aefdd15f30dd652acec7ea7c1878b2bd2f1cb858e324112f",
+  "previous_digest": "sha256:0a5215b704cdf6565cb1d0aa9368d227051b1524f1148a7d3939517c9d0bfd11",
   "served_tools": [
     {
       "name": "check_caller",

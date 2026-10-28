@@ -1,5 +1,5 @@
 plugin_manifest "ai-probe" {
-  version = "0.1.1"
+  version = "0.2.0"
 
   requires {
     level "manifest" { min = 17 }
