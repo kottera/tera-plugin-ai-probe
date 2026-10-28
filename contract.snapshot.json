@@ -1,0 +1,66 @@
+{
+  "note": "Written by tera plugin pack; commit it beside manifest.hcl. The next pack compares the release it builds with this contract, and refuses an edit outside ADR-157 D6's allow-list unless the major version of version has risen, and a version that does not rise unless the release's bytes are this one's.",
+  "format": 1,
+  "version": "0.1.0",
+  "major_version": "v0.1",
+  "release_digest": "sha256:19ac50b48c0e865995c28c7081d6c606016d614e8d3547d7c951805bdd90998f",
+  "served_tools": [
+    {
+      "name": "check_caller",
+      "input_schema": {
+        "properties": {
+          "note": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  ],
+  "vault": [
+    {
+      "kind": "tools",
+      "stem": "door-check"
+    },
+    {
+      "kind": "work-order-types",
+      "stem": "assistant",
+      "schemas": {
+        "input_schema": {
+          "role": "input",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "task": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "task"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      "values": {
+        "capability.interactive": "true",
+        "capability.result_call": "false",
+        "in_dispatch": "in_dispatch { verbs = []; tool \"plugin.ai-probe/served-tools/check_caller\" {  } }",
+        "postconditions": "postconditions { none = \"A conversation makes no claim to verify: the plugin ends it, and what it said is read off the Work Order and the plugin's own record.\" }",
+        "recipe": "capability"
+      }
+    },
+    {
+      "kind": "work-order-types",
+      "stem": "door-check",
+      "values": {
+        "capability.interactive": "false",
+        "capability.result_call": "false",
+        "in_dispatch": "in_dispatch { verbs = []; tool \"plugin.ai-probe/served-tools/check_caller\" {  } }",
+        "postconditions": "postconditions { none = \"The report is read off the Work Order's outputs and the plugin's record, and compared by the person running the round.\" }",
+        "recipe": "capability"
+      }
+    }
+  ]
+}
