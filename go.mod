@@ -2,7 +2,7 @@ module github.com/kottera/tera-plugin-ai-probe
 
 go 1.26.2
 
-require github.com/kottera/sdk v0.1.0-rc.12
+require github.com/kottera/sdk v0.1.0-rc.15
 
 require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
