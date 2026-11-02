@@ -54,9 +54,13 @@ plugin_manifest "ai-probe" {
       - **The plugin it builds on, installed:** the `claude-code` harness, which
         runs the `assistant`'s session, and whatever that harness itself builds
         on to reach the model.
-      - **A worker that runs `claude-code` with a model credential.** The
-        `assistant` type names no credential; the deployment's binding for the
-        harness supplies one, as it does for any type of that harness.
+      - **A worker that runs `claude-code` with a model credential of the
+        deployment's own.** The `assistant` type names no credential and does
+        not say `filer {}`, so it never spends the signed-in person's own
+        subscription: its session draws a seat from a pool the worker uses, or
+        the worker's own connection binding for the harness. A deployment whose
+        only model credentials are people's own connections gives the assistant
+        none, and its first request is refused.
       - **A `python3` on the worker that runs `door-check`.** Its tool is a
         Python script, and the plugin builds on no toolchain that provides one.
       - **Nothing in the repository.** Neither type clones a repository, reads a
@@ -65,9 +69,11 @@ plugin_manifest "ai-probe" {
       ## The model
 
       The `assistant` type names no model, no tier and no effort, so its session
-      runs whatever the `claude-code` installation resolves for a type that names
-      none. The person chooses the model, through that installation's settings;
-      this plugin sets none. Write no model into the repository for it.
+      runs whatever the `claude-code` installation's model policy resolves for a
+      type that names none. That policy is chosen once, for every type of the
+      harness, by the person setting the deployment up; the signed-in person
+      does not choose a model from the plugin's UI. This plugin sets none. Write
+      no model into the repository for it.
 
       ## The skills
 
