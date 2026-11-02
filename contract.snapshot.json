@@ -1,10 +1,26 @@
 {
   "note": "Written by tera plugin pack; commit it beside manifest.hcl. The next pack compares the release it builds with this contract, and refuses an edit outside ADR-157 D6's allow-list unless the major version of version has risen, and a version that does not rise unless the release's bytes are this one's.",
   "format": 1,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "major_version": "v0.2",
-  "release_digest": "sha256:321af4acf03befc1aefdd15f30dd652acec7ea7c1878b2bd2f1cb858e324112f",
-  "previous_digest": "sha256:0a5215b704cdf6565cb1d0aa9368d227051b1524f1148a7d3939517c9d0bfd11",
+  "release_digest": "sha256:18eda8de89b99a15bf40c70f45652cc26184d92710124fa2a078364f8524b8d7",
+  "previous_digest": "sha256:f46719c1182191d05fe696f40d57c4a97f32b2d5c6e90612bff087ea5a000d5e",
+  "toolchain": "go1.26.2",
+  "pack_toolchain": "go1.26.2",
+  "artifacts": {
+    "fetch": "remote",
+    "url": "https://github.com/kottera/tera-plugin-ai-probe/releases/download/v${version}/ai-probe-${platform.os}-${platform.arch}.tar.gz",
+    "redirect_domains": [
+      "release-assets.githubusercontent.com"
+    ],
+    "platforms": [
+      "darwin/amd64",
+      "darwin/arm64",
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "entry": "bin/ai-probe"
+  },
   "served_tools": [
     {
       "name": "check_caller",
