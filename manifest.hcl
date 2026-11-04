@@ -1,5 +1,5 @@
 plugin_manifest "ai-probe" {
-  version = "0.2.1"
+  version = "0.2.2"
 
   requires {
     # 20: adoption {} below (ADR-193 D5).
@@ -61,6 +61,27 @@ plugin_manifest "ai-probe" {
         the worker's own connection binding for the harness. A deployment whose
         only model credentials are people's own connections gives the assistant
         none, and its first request is refused.
+      - **A declared activity partition for the worker that runs the
+        `assistant`.** The `assistant` is interactive, and its conversation is
+        readable only on the activity path, so it must resolve to a partition
+        an `activity_partition` recipe declares or it does not run. Neither
+        type declares one, so every worker that runs the `assistant` names a
+        declared partition in its `activity_partition`, with read granted to
+        the people who watch its runs. Without it the UI opens no assistant:
+        `/probe/open` is refused `interactive_unwatchable`.
+      - **Worker grants for the tools the types run and the tool they grant.**
+        Both types grant their sessions the plugin's served tool
+        `check_caller`, and a call is admitted only when the worker the Work
+        Order runs on names it too. Every worker that runs an `assistant` or a
+        `door-check` lists `plugin.ai-probe/served-tools/check_caller` in its
+        `permissions { tools }`, spelled as the types spell it, beside the tool
+        it runs: `plugin.claude-code/tools/claude-code` for the `assistant`,
+        `plugin.ai-probe/tools/door-check` for the `door-check`. The vault that
+        declares the worker resolves those labels through its
+        `.tera/builds-on/ai-probe.hcl` and `.tera/builds-on/claude-code.hcl`,
+        each naming the major installed. A worker without the `check_caller`
+        entry is refused the call with `permission_denied`, through either
+        door, and nothing reaches the plugin.
       - **A `python3` on the worker that runs `door-check`.** Its tool is a
         Python script, and the plugin builds on no toolchain that provides one.
       - **Nothing in the repository.** Neither type clones a repository, reads a
