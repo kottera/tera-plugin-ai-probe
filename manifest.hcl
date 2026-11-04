@@ -76,8 +76,11 @@ plugin_manifest "ai-probe" {
         `door-check` lists `plugin.ai-probe/served-tools/check_caller` in its
         `permissions { tools }`, spelled as the types spell it, beside the tool
         it runs: `plugin.claude-code/tools/claude-code` for the `assistant`,
-        `plugin.ai-probe/tools/door-check` for the `door-check`. A worker
-        without it is refused the call with `permission_denied`, through either
+        `plugin.ai-probe/tools/door-check` for the `door-check`. The vault that
+        declares the worker resolves those labels through its
+        `.tera/builds-on/ai-probe.hcl` and `.tera/builds-on/claude-code.hcl`,
+        each naming the major installed. A worker without the `check_caller`
+        entry is refused the call with `permission_denied`, through either
         door, and nothing reaches the plugin.
       - **A `python3` on the worker that runs `door-check`.** Its tool is a
         Python script, and the plugin builds on no toolchain that provides one.

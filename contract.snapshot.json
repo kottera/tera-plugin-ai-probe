@@ -3,7 +3,7 @@
   "format": 1,
   "version": "0.2.2",
   "major_version": "v0.2",
-  "release_digest": "sha256:35a139f55c0bff9cbee50f4df5827c7045476a9807233d2907ae265f6c2aa15e",
+  "release_digest": "sha256:8acaeef1c375149450b0e3d1b93b5c4c5fb99e66527a72a78ef20550002c1214",
   "previous_digest": "sha256:44e1b2813f5b7ba56cf4b1b7a53d4a7984f93ab222253a4bd43ac9b9254e19ae",
   "toolchain": "go1.26.2",
   "pack_toolchain": "go1.26.2",
